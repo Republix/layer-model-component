@@ -24,3 +24,5 @@ var rejectFun = function() {  // 按需使用的取消方法
 }
 layer.show(comfirFun, rejectFun);  // 显示模态框 并初始化其 点击确认，取消 方法
 ```
+
+![images](https://github.com/Republix/layer-model-component/blob/master/preview/preview.png)
