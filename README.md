@@ -6,8 +6,7 @@
 使用方法
 
 ```bash
-声明配置 // 非必需
-var layerConfig = {  
+var layerConfig = {  // 声明配置  非必需
   title: '标题',
   content: '内容',
   confirm: '确认按钮Text',
