@@ -3,16 +3,23 @@
 
 ##  原型
 
-```bash
-var layer1 = new layer({
-  title: 'title',
-  content: 'content',
-  single: false
-  .....
-});
+使用方法
 
-layer1.show() or showLayer()
+声明配置 // 非必需
+var layerConfig = {  
+  title: '标题',
+  content: '内容',
+  confirm: '确认按钮Text',
+  canel: '取消按钮Text',
+  animation: false // 是否开启初始动画 默认为true
+}
 
+var layer = new layerComponent(layerConfig);  // 配置 组件信息 如不添加配置，执行默认配置
 
-
-```
+var comfirmFun = function() {  // 按需使用的确认方法
+  console.log('true');
+}
+var rejectFun = function() {  // 按需使用的取消方法
+  console.log('false');
+}
+layer.show(comfirFun, rejectFun);  // 显示模态框 并初始化其 点击确认，取消 方法
