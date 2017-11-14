@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="./style/layer.css">
+	<style type="text/css">
+		body {
+		  margin: 0px;
+		  padding: 0px;
+		}
+		.devContainer {
+		  margin: 0px auto;
+		  width: 100px;
+		  height: 200px;
+		  /*position: absolute;*/
+		  top: 0px;
+		  margin-top: 20px;
+		}
+		.devContainer button {
+			border-radius: 5px;
+			color: white;
+			background-color: #337ab7;
+			border: 0px;
+			padding: 6px 12px;
+			user-select: none;
+			outline: none;
+		}
+		.devContainer button:active {
+			box-shadow: 0px 1px 1px 1px grey;
+		}
+	</style>
+</head>
+<body>
+	<div class="devContainer">
+		<button onclick="openDev()">开启</button>
+	</div>
+
+</body>
+  	<script type="text/javascript" src="./layer_dev.js"></script>
+	<script type="text/javascript">
+		// 配置文件
+	
+		var layerConfig = {
+			title: 'test',
+			content: 'are u ok?',
+			confirm: 'ok',
+			// animation: false
+		};
+
+		// 确认按钮 方法
+		var ab = function() {
+			console.log("true");
+		}
+		// 拒绝/取消按钮 方法
+		var rj = function() {
+			console.log('reject');
+		}
+
+		// 初始化 组件实例
+		var layer = new layerComponent(layerConfig,ab,rj);
+		// 绑定测试按钮Fun
+		function openDev() {
+			// 设置显示 并设置确定/取消方法
+			layer.show(ab, rj);
+		}
+
+
+	</script>
+</html>

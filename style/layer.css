@@ -1,0 +1,150 @@
+
+/* layer component */
+
+.layer-container {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /*height: 100%;*/
+  width: 100%;
+}
+.layer-do-init-animation {
+  animation: layer-init-animation 0.5s;
+}
+.layer-init-animation-LTR { /* future */
+  animation: layer-animation-LRT 1s;
+}
+.layer-mask {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: grey;
+  opacity: 0.6;
+}
+.layer-dev {
+  width: 310px;
+  height: 200px;
+  background-color: white;
+
+  display: flex;
+  flex-direction: column;
+
+  box-shadow: 0px 1px 12px 0px grey;
+  border-radius: 3.5px;
+}
+.layer-frame-header {
+  position: relative;
+
+}
+.layer-frame-header-title {
+  font-size: 18px;
+  text-align: center;
+  font-weight: 600;
+
+  box-sizing: border-box;
+  padding: 3px;
+  padding-top: 5px;
+}
+.layer-close-btn {
+  position: absolute;
+  right: 5px;
+  top: 2px;
+}
+.layer-close-btn span {
+  display: block;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  user-select: none;
+
+  cursor: pointer;
+  transition-duration: .3s;
+}
+.layer-close-btn span:hover {
+  transform: rotate(45deg) scale(1.5);
+}
+.layer-frame-content {
+  flex-grow: 1;
+  text-align: center;
+  /*text-indent: 20px;*/
+  box-sizing: border-box;
+  padding: 0px 10px;
+  margin-top: 10px;
+}
+.layer-frame-footer {
+  box-sizing: border-box;
+  margin: 5px 3px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.layer-frame-confirm-btn {
+  /*margin: 0px 5px;*/
+  margin-right: 10px;
+  background-color: #5bc0de;
+  color: white;
+  transition-duration: 0.3s;
+
+}
+.layer-frame-confirm-btn:hover {
+  box-shadow: 0px 0.5px 1px 0.3px grey;
+}
+.layer-frame-confirm-btn:active {
+  box-shadow: 0px 0.5px 1px 0.5px white inset;
+}
+.layer-frame-canel-btn {
+  /*margin: 0px 5px;*/
+  margin-left: 10px;
+  background-color: #5cb85c;
+  color: white;
+  transition-duration: 0.3s;
+}
+.layer-frame-canel-btn:hover {
+  box-shadow: 0px 0.5px 1px 0.3px grey;
+}
+.layer-frame-canel-btn:active {
+  box-shadow: 0px 0.5px 1px 0.5px white inset;
+}
+
+
+
+
+.layer-button {
+  border-radius: 3px;
+  border: 0px;
+  padding: 7px 12px;
+
+  min-width: 60px;
+  margin-bottom: 5px;
+  outline: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+
+@keyframes layer-init-animation {
+  0% {
+    margin-top: -50px;
+    opacity: 0.3;
+  }
+  100% {
+    margin-top: 0px;
+    opacity: 1;
+  }
+}
+@-webkit-keyframes layer-init-animation {
+  0% {
+    margin-top: -50px;
+    opacity: 0.3;
+  }
+  100% {
+    margin-top: 0px;
+    opacity: 0.4;
+  }
+}
