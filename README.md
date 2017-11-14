@@ -5,6 +5,7 @@
 
 使用方法
 
+```bash
 声明配置 // 非必需
 var layerConfig = {  
   title: '标题',
@@ -23,3 +24,4 @@ var rejectFun = function() {  // 按需使用的取消方法
   console.log('false');
 }
 layer.show(comfirFun, rejectFun);  // 显示模态框 并初始化其 点击确认，取消 方法
+```
