@@ -2,12 +2,14 @@
 /* layer component */
 
 .layer-container {
-  display: none;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  /*height: 100%;*/
-  width: 100%;
+    display: none;
+    position: fixed;
+    margin: 0px auto;
+    top: 190px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
 }
 .layer-do-init-animation {
   animation: layer-init-animation 0.5s;
