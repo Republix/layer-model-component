@@ -28,7 +28,7 @@
   opacity: 0.6;
 }
 .layer-dev {
-  width: 310px;
+  width: 300px;
   height: 200px;
   background-color: white;
 
@@ -46,10 +46,12 @@
   font-size: 18px;
   text-align: center;
   font-weight: 600;
-
   box-sizing: border-box;
   padding: 3px;
   padding-top: 5px;
+  padding-bottom: 10px;
+  margin: 0px 10px;
+  border-bottom: 1px solid #d7d7d7;
 }
 .layer-close-btn {
   position: absolute;
@@ -79,6 +81,7 @@
 .layer-frame-footer {
   box-sizing: border-box;
   margin: 5px 3px;
+  margin-bottom: 10px;
 
   display: flex;
   justify-content: center;
@@ -86,7 +89,7 @@
 }
 .layer-frame-confirm-btn {
   /*margin: 0px 5px;*/
-  margin-right: 10px;
+  margin-right: 30px;
   background-color: #5bc0de;
   color: white;
   transition-duration: 0.3s;
@@ -100,7 +103,7 @@
 }
 .layer-frame-canel-btn {
   /*margin: 0px 5px;*/
-  margin-left: 10px;
+  margin-left: 15px;
   background-color: #5cb85c;
   color: white;
   transition-duration: 0.3s;
@@ -121,10 +124,12 @@
   padding: 7px 12px;
 
   min-width: 60px;
-  margin-bottom: 5px;
+  margin-bottom: 12px;
   outline: none;
   user-select: none;
   cursor: pointer;
+  
+  font-family: sans-serif;
 }
 
 
