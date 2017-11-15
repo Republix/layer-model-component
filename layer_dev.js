@@ -18,8 +18,8 @@ function layerComponent(config, ab, rj) {
 		var config = setConfig(config);
 		initLayer(config);
 	} else { 
-		var config = setDefault();
-		initLayer(setDefault);
+		// var config = setDefault();
+		// initLayer(setDefault);
 	}
 
 	function initLayer(config) {
