@@ -1,34 +1,80 @@
-function layerComponent(config, ab, rj) {
-	this.title;
-	this.content;
-	this.confirm;
-	this.canel;
-	this.mask; // future
-	this.layerDom;
-	this.theme; // future
-	this.animation;
-	this.resolveFun;
-	this.rejectFun;
+function layerComponent(config) {
+	// config variable
+	var layerComponentVariable = {
+		config: {
+			title: String,
+			content: String,
+			confirmValue: String,
+			canelValue: String,
+			animation: Boolean
+		},
+		Fun: {
+			resolveFun: Object,
+			rejectFun: Object,
+		},
+		dom: {
+			layerDom: Object,
+			layerFrameHeaderTitle: Object,
+			layerFrameContent: Object,
+			layerFrameConfirmBtn: Object,
+			layerFrameCanelBtn: Object	
+		}
+	};
+	var _that = layerComponentVariable;
 
-	var _that = this;
-	// this.id;
-	initDefault();  // init End
-
-	if(config) {
-		var config = setConfig(config);
-		initLayer(config);
-	} else { 
-		// var config = setDefault();
-		// initLayer(setDefault);
+	var defaultConfig = {
+		title: '确认操作',
+		content: '选择一个操作',
+		confirmValue: '确认',
+		canelValue: '取消',
+		animation: true
 	}
 
-	function initLayer(config) {
+	// 初始化 DOM
+	initLayer();
+
+	// 初始化 配置入口
+	function initComponent(config) {
+		setConfig(config);
+		initConfig();
+	}
+
+	// 设置 config 变量
+	function setConfig(config) {
+		_that.config.title = (config.title) ? config.title : defaultConfig.title;
+		_that.config.content = (config.content) ? config.content : defaultConfig.content;
+		_that.config.confirmValue = (config.confirmValue) ? config.confirmValue : defaultConfig.confirmValue;
+		_that.config.canelValue = (config.canelValue) ? config.canelValue : defaultConfig.canelValue;
+		_that.config.animation = (config.animation != undefined) ? config.animation : defaultConfig.animation;
+	}
+	// 初始化 组件信息 方法
+	function initConfig(config) {
+		// animation switcher
+		if(_that.config.animation == true) {
+			var originClass = _that.dom.layerDom.className;  // 追加样式
+			setClass(_that.dom.layerDom, originClass+ ' ' + "layer-do-init-animation");
+		}
+
+		// 方便后续更改
+		function setItem(title, content, confirmValue, canelValue) {
+			_that.dom.layerFrameHeaderTitle.innerHTML = title;
+			_that.dom.layerFrameContent.innerHTML = content;
+			_that.dom.layerFrameConfirmBtn.innerHTML = confirmValue;
+			_that.dom.layerFrameCanelBtn.innerHTML = canelValue;
+		}
+		var title = _that.config.title;
+		var content = _that.config.content;
+		var confirmValue = _that.config.confirmValue;
+		var canelValue = _that.config.canelValue;
+		setItem(title, content, confirmValue, canelValue);
+	}
+	// 初始化 DOM 方法
+	function initLayer() {
 		var body = document.getElementsByTagName('body')[0];
 		// main container
 		var layerContainer = document.createElement("div");
-		this.layerDom = layerContainer;
-
 		body.appendChild(layerContainer);
+
 		setClass(layerContainer, "layer-container");
 
 		// main component
@@ -54,6 +100,9 @@ function layerComponent(config, ab, rj) {
 		layerFrameHeader.appendChild(layerFrameHeaderTitle);
 		setClass(layerCloseBtn, "layer-close-btn");
 		setClass(layerFrameHeaderTitle, "layer-frame-header-title");
+
+
+
 		// close btn text
 		var span = document.createElement("span");
 		layerCloseBtn.appendChild(span);
@@ -61,118 +110,83 @@ function layerComponent(config, ab, rj) {
 		var aps = document.getElementById("layer-frame-close-btn");
 		aps.innerHTML = "+";
 
-
 		// layer.content
 		setClass(layerFrameContent, "layer-frame-content");
+
 
 		// layer.footer -- button-group
 		var layerFrameConfirmBtn = document.createElement("button");
 		var layerFrameCanelBtn = document.createElement("button");
+
 		layerFrameFooter.appendChild(layerFrameConfirmBtn);
 		layerFrameFooter.appendChild(layerFrameCanelBtn);
 		setClass(layerFrameConfirmBtn, "layer-button layer-frame-confirm-btn");
 		setClass(layerFrameCanelBtn, "layer-button layer-frame-canel-btn");
 
+		// 组件内变量
+		_that.dom.layerDom = layerContainer;
+		_that.dom.layerCloseBtn = layerCloseBtn;
+		_that.dom.layerFrameHeaderTitle = layerFrameHeaderTitle;
+		_that.dom.layerFrameContent = layerFrameContent;
+		_that.dom.layerFrameConfirmBtn = layerFrameConfirmBtn;
+		_that.dom.layerFrameCanelBtn = layerFrameCanelBtn;
 
-		function setClass(dom, className) {
-			if(window.navigator.userAgent.indexOf("MSIE") >= 1) {
-				dom.className = className;
-			} else {
-				dom.setAttribute("class", className);
-			}
-		}
+	
 		function setID(dom, idName) {
 			dom.setAttribute("id", idName);
 			return document.getElementById(idName);
 		}
-		layerCloseBtn.onclick = function() {
-			hidden();
-			if(_that.rejectFun) {
-				_that.rejectFun();
-			}
-		}
-		layerFrameConfirmBtn.onclick = function() {
-			hidden();
-			if(_that.resolveFun) {
-				_that.resolveFun();
-			}
-		}
-		layerFrameCanelBtn.onclick = function() {
-			hidden();
-			if(_that.rejectFun) {
-				_that.rejectFun();
-			}
-		}
-
-		// animation switcher
-		if(config.animation) {
-			if(config.animation == true) {
-				var originClass = layerContainer.className;  // 追加样式
-				setClass(layerContainer, originClass+ ' ' + "layer-do-init-animation");
-			}
-		}
-
-		function setItem(title, content, confirm, canel) {
-			layerFrameHeaderTitle.innerHTML = title;
-			layerFrameContent.innerHTML = content;
-			layerFrameConfirmBtn.innerHTML = confirm;
-			layerFrameCanelBtn.innerHTML = canel;
-		}
-		setItem(config.title, config.content, config.confirm, config.canel);
 	}
 
-	function setConfig(config) {
-		if(config.title) {
-			this.title = config.title;
+	// 初始化 确认取消事件 方法 & 绑定Dom
+	function initFun(resolveFun, rejectFun) {
+		_that.Fun.resolveFun = resolveFun;
+		_that.Fun.rejectFun = rejectFun;
+
+		_that.dom.layerCloseBtn.onclick = function() {
+			hidden();
+			if(_that.Fun.rejectFun) {
+				_that.Fun.rejectFun();
+			}
 		}
-		if(config.content) {
-			this.content = config.content;
+		_that.dom.layerFrameConfirmBtn.onclick = function() {
+			hidden();
+			if(_that.Fun.resolveFun) {
+				_that.Fun.resolveFun();
+			}
 		}
-		if(config.confirm) {
-			this.confirm = config.confirm;
-		}	
-		if(config.canel) {
-			this.canel = config.confirm;
-		}
-		if(config.animation != undefined) {  // 此处涉及 true false 
-			this.animation = config.animation;
-		}
-		return {
-			title: this.title,
-			content: this.content,
-			confirm: this.confirm,
-			canel: this.canel,
-			animation: this.animation
+		_that.dom.layerFrameCanelBtn.onclick = function() {
+			hidden();
+			if(_that.Fun.rejectFun) {
+				_that.Fun.rejectFun();
+			}
 		}
 	}
-	function initDefault() {
-		title = "请确认";
-		content = "";
-		confirm = "Sure";
-		canel = "Canel";
-		animation = true;
-		return {
-			title: title,
-			content: content,
-			confirm: confirm,
-			canel: canel,
-			animation: animation
+
+	function setClass(dom, className) {
+		if(window.navigator.userAgent.indexOf("MSIE") >= 1) {
+			dom.className = className;
+		} else {
+			dom.setAttribute("class", className);
 		}
 	}
 
 	function showModal(resolveFun, rejectFun) {
-		// 注意作用域
-		_that.resolveFun = resolveFun;
-		_that.rejectFun = rejectFun;
-		this.layerDom.style.display = "flex";
+		initFun(resolveFun, rejectFun);
+		_that.dom.layerDom.style.display = "flex";
 	}
+
 	function hidden() {
-		this.layerDom.style.display = "none";
+		_that.dom.layerDom.style.display = "none";
 	}
+	
 	return {
-		'show': function(resolveFun, rejectFun) {
+		'show': function(config, resolveFun, rejectFun) {
+			initComponent(config);
 			showModal(resolveFun, rejectFun); 
 		}
 	}
 }
+function layerMsgComponent(config) {
 
+}
