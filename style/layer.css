@@ -2,14 +2,15 @@
 /* layer component */
 
 .layer-container {
-    display: none;
-    position: fixed;
-    margin: 0px auto;
-    top: 190px;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
+  display: none;
+  position: fixed;
+  margin: 0px auto;
+  top: 190px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* height: 100%; */
+  width: 100%;
 }
 .layer-do-init-animation {
   animation: layer-init-animation 0.5s;
@@ -75,10 +76,11 @@
 .layer-frame-content {
   flex-grow: 1;
   text-align: center;
-  /*text-indent: 20px;*/
+  /* text-indent: 20px; */
   box-sizing: border-box;
   padding: 0px 10px;
-  margin-top: 10px;
+  margin-top: 21px;
+  font-size: 17px;
 }
 .layer-frame-footer {
   box-sizing: border-box;
