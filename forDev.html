@@ -60,12 +60,14 @@
 			console.log('reject');
 		}
 
-		var defaulLayer = new layerComponent(layerConfig);
+		var defaulLayer = new layerComponent();
 		
 		// 绑定测试按钮Fun
 		function openDev() {
 			// 设置显示 并设置确定/取消方法
-			defaulLayer.show(layerConfig, rs, rj);
+			defaulLayer.show(config, rs, rj);
+			// or
+			// defaulLayer.show(rs, rj);
 		}
 
 

@@ -163,6 +163,7 @@ function layerComponent(config) {
 		}
 	}
 
+	// 设置样式
 	function setClass(dom, className) {
 		if(window.navigator.userAgent.indexOf("MSIE") >= 1) {
 			dom.className = className;
@@ -171,22 +172,30 @@ function layerComponent(config) {
 		}
 	}
 
+	// 显示模态框
 	function showModal(resolveFun, rejectFun) {
 		initFun(resolveFun, rejectFun);
 		_that.dom.layerDom.style.display = "flex";
 	}
 
+	// 隐藏模态框
 	function hidden() {
 		_that.dom.layerDom.style.display = "none";
 	}
 	
 	return {
 		'show': function(config, resolveFun, rejectFun) {
-			initComponent(config);
-			showModal(resolveFun, rejectFun); 
+			if( typeof(config) == 'object' ) {
+				initComponent(config);
+				showModal(arguments[1], arguments[2]);
+			} else {
+				initComponent({});
+				showModal(arguments[0], arguments[1]); 				
+			}
 		}
 	}
 }
+
 function layerMsgComponent(config) {
 
 }
