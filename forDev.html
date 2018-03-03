@@ -38,8 +38,13 @@
 </body>
   	<script type="text/javascript" src="./layer_dev.js"></script>
 	<script type="text/javascript">
-		// 配置文件
-	
+		
+		/** 
+		 * 配置信息 
+		 * 确认事件方法
+		 * 取消事件方法
+		 * 初始化实例
+		 */
 		var layerConfig = {
 			title: 'test',
 			content: 'Are  u  ok ?',
@@ -47,21 +52,20 @@
 			// animation: false
 		};
 
-		// 确认按钮 方法
-		var ab = function() {
+		var rs = function() {
 			console.log("true");
 		}
-		// 拒绝/取消按钮 方法
+
 		var rj = function() {
 			console.log('reject');
 		}
 
-		// 初始化 组件实例
-		var layer = new layerComponent(layerConfig,ab,rj);
+		var defaulLayer = new layerComponent(layerConfig);
+		
 		// 绑定测试按钮Fun
 		function openDev() {
 			// 设置显示 并设置确定/取消方法
-			layer.show(ab, rj);
+			defaulLayer.show(layerConfig, rs, rj);
 		}
 
 
